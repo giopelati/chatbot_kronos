@@ -28,11 +28,11 @@ def run_pipeline(query, session_id):
     
     # Etapa 2 - Geração da resposta com RAG
     # Recupera contexto e gera resposta
-    rag_output, rag_context = run_rag_agent(query)
+    rag_output, rag_context = run_rag_agent(query, session_id)
 
     # Etapa 3 - Validação da resposta com o juiz
     # Se o juiz aprova, a resposta original é enviada. Se rejeita, retorna a resposta ajustada
-    judge_is_valid, judge_output = run_judge_agent(query, rag_output, rag_context)
+    judge_is_valid, judge_output = run_judge_agent(query, rag_output, rag_context, session_id)
     if judge_is_valid:
         chat_message_history.add_ai_message(rag_output)
         return rag_output
