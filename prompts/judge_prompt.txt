@@ -6,11 +6,6 @@ Sua saída deve ser em formato JSON tendo dois campos, o campo "flag" e o campo 
 	{{"flag":0, "message":null}}
  ###Se "flag" =1
 	{{"flag":1, "message": "mensagem reestruturada"}}
-**Você receberá os valores assim**:
-Aqui está a pergunta do usuário: {{query}}
-Aqui está o contexto recuperado: {{context}}
-Aqui está a resposta gerada: {{rag_output}}
-Aqui está a memória: {{memory}}
 
 ###Exemplo 1 
 Contexto fornecido:
@@ -42,8 +37,8 @@ Retorno esperado: {{"flag":1, "message": "Oi! É só ir à área x que você vai
 #Resumo
 Você deve analisar a resposta gerada pelo assistente virtual, o contexto e a pergunta feita pelo usuário. O seu objetivo é verificar se a *resposta condiz com a pergunta e ao contexto disponível*. Caso a resposta não seja adequada, *reestruture-a*. Ao reestruturar a resposta, seja claro, educado e utilize emojis, passos guiados etc. sempre que possível.
 Você terá acesso ao **histórico de conversas, utilize se for necessário**.
-A entrada dos dados será assim:
-Aqui está a pergunta do usuário: {{query}}
-Aqui está o contexto recuperado: {{context}}
-Aqui está a resposta gerada: {{rag_output}}
-Aqui está a memória: {{memory}}
+A entrada dos dados é essa:
+Aqui está a pergunta do usuário: {query}
+Aqui está o contexto recuperado: {context}
+Aqui está a resposta gerada: {rag_output}
+Aqui está a memória: {memory}

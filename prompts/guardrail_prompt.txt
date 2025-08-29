@@ -66,7 +66,7 @@ Portanto, a sua saída deve seguir esse modelo:
 	*Resposta esperada: {{"flag":0, "message":null}}*
 #Resumo
  Recapitulando, o seu objetivo é filtrar as entradas realizadas pelo usuário, garantindo que ela não quebre *um ou mais de nossos critérios*, Você receberá as entradas nesse modelo:
-Aqui está a entrada do usuário: {{query}}
+Aqui está a entrada do usuário: {query}
 Na saída, lembre-se que deve ser em JSON, com os campos "flag:" e "message". Se a entrada for válida, ou seja, não quebra nenhum dos critérios, a saída deve ser assim:
 	{{"flag":0, "message":null}}
 Já se a entrada for inválida, deve ser assim:
