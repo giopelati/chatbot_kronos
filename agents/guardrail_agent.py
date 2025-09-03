@@ -17,8 +17,8 @@ class GuardrailOutput(BaseModel):
     
 # Conecta com o Gemini para geração de respostas
 model = ChatGoogleGenerativeAI(
-    model="gemini-2.0-flash",
-    google_api_key=os.getenv("GEMINI_API_KEY")
+    model="gemini-2.5-flash",
+    google_api_key=os.getenv("GEMINI_API_KEY"),
 ).with_structured_output(GuardrailOutput)
 
 # Lê o template do prompt
@@ -33,8 +33,10 @@ def run_guardrail_agent(query, session_id):
     try:
         # Recupera a memória
         memory = get_memory(session_id)
-
+        
         output: GuardrailOutput = pipeline.invoke({"query": query, "memory": memory})
+
+        print('Guardrail:', output)
 
         if output.flag == 0:
             return True, None

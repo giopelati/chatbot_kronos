@@ -15,7 +15,7 @@ class JudgeOutput(BaseModel):
 
 # Conecta com o Gemini para geração de respostas
 model = ChatGoogleGenerativeAI(
-    model="gemini-2.0-flash",
+    model="gemini-2.5-flash",
     google_api_key=os.getenv("GEMINI_API_KEY")
 ).with_structured_output(JudgeOutput)
 
@@ -34,6 +34,8 @@ def run_judge_agent(query, rag_output, context, session_id):
         
         output: JudgeOutput = pipeline.invoke({"query": query, "rag_output": rag_output, "context": context, "memory": memory})
 
+        print('Judge:', output)
+        
         if output.flag == 0:
             return True, None
         else:
