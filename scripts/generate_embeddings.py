@@ -9,7 +9,7 @@ docs_collection = database["docs"]
 
 # Conecta o Gemini para embeddings
 embeddings = GoogleGenerativeAIEmbeddings(
-    model="models/embedding-001",
+    model="gemini-embedding-001",
     google_api_key=os.getenv("GEMINI_API_KEY")
 )
 
