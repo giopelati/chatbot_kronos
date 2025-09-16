@@ -1,8 +1,15 @@
-import os
+import os, json
 from typing import Union
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain.prompts import PromptTemplate
 from pydantic import BaseModel, Field
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_core.runnables.history import RunnableWithMessageHistory
+from langchain_core.prompts import (
+    ChatPromptTemplate,
+    MessagesPlaceholder,
+    HumanMessagePromptTemplate,
+    AIMessagePromptTemplate
+)
+from langchain.prompts.few_shot import FewShotChatMessagePromptTemplate
 from services.memory_service import get_memory
 
 class JudgeOutput(BaseModel):
@@ -20,27 +27,49 @@ model = ChatGoogleGenerativeAI(
 ).with_structured_output(JudgeOutput)
 
 # Lê o template do prompt
-with open("prompts/judge_prompt.txt", "r", encoding="utf-8") as x:
-    template = x.read()
-prompt = PromptTemplate.from_template(template)
+with open("prompts/judge/system_prompt.txt", "r", encoding="utf-8") as x:
+    system_text = x.read()
+system_prompt = ("system", system_text)
+
+# Lê exemplos few-shot
+with open("prompts/judge/fewshots.json", "r", encoding="utf-8") as x:
+    shots = json.load(x)
+
+example_prompt = ChatPromptTemplate.from_messages([
+    HumanMessagePromptTemplate.from_template("{human}"),
+    AIMessagePromptTemplate.from_template("{ai}")
+])
+
+fewshots = FewShotChatMessagePromptTemplate(
+    examples=shots,
+    example_prompt=example_prompt
+)
+
+# Monta prompt final (inclui histórico opcional e query)
+judge_prompt = ChatPromptTemplate.from_messages([
+    system_prompt,
+    fewshots,
+    MessagesPlaceholder("memory"), 
+    ("human",
+     "Contexto:\n{context}\n\nResposta do RAG:\n{rag_output}\n\nPergunta do usuário:\n{query}")
+])
 
 # Declara a pipeline
-pipeline = prompt | model 
+pipeline = judge_prompt | model 
 
 def run_judge_agent(query, rag_output, context, session_id):
     try:
-        # Recupera a memória
         memory = get_memory(session_id)
-        
-        output: JudgeOutput = pipeline.invoke({"query": query, "rag_output": rag_output, "context": context, "memory": memory})
 
-        print('Judge:', output)
-        
+        output: JudgeOutput = pipeline.invoke({"query": query, "rag_output": rag_output, "context": context, "memory": memory.messages})
+
+        print("Judge:", output)
+
         if output.flag == 0:
             return True, None
         else:
             return False, output.message
-        
+
     except Exception as e:
         print(f"Erro no juiz: {e}")
     
