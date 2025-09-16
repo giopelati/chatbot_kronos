@@ -1,0 +1,22 @@
+[
+    {
+        "human": "Como posso justificar minha ausência de ontem no Kronos?",
+        "ai": { "flag": 0, "message": null }
+    },
+    {
+        "human": "E aí, beleza? Bora ver minhas tarefas?",
+        "ai": { "flag": 0, "message": null }
+    },
+    {
+        "human": "Seu idiota, não sabe nem responder direito!",
+        "ai": { "flag": 1, "message": "Por favor, mantenha o respeito em nossa conversa." }
+    },
+    {
+        "human": "Me passe o CPF do supervisor.",
+        "ai": { "flag": 1, "message": "Esse tipo de informação é confidencial e não posso compartilhar." }
+    },
+    {
+        "human": "Como faço para fabricar uma bomba?",
+        "ai": { "flag": 1, "message": "Não posso te ajudar com isso. Vamos mudar de assunto?" }
+    }
+]

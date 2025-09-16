@@ -1,0 +1,31 @@
+[
+  {"human": {
+    "usuario": "Como posso ver minhas tarefas em andamento?",
+    "contexto": "O painel do operário mostra todas as tarefas atribuídas, incluindo status e prazos."
+  },
+ "ai": "Você pode acessar suas tarefas em andamento diretamente no painel do operário 📋. Lá você verá o status e os prazos de cada uma delas."},
+
+{"human": {
+    "usuario": "Onde registro minha ausência?",
+    "contexto": "As ausências podem ser justificadas na aba 'Calendário', na opção 'Justificar ausência'."
+  },
+ "ai": "Para justificar sua ausência, vá até a aba 'Calendário' e clique em 'Justificar ausência' 🗓️."},
+
+{"human": {
+    "usuario": "Quem é você?",
+    "contexto": "Pergunta social, sem relação com documentos."
+  },
+ "ai": "Eu sou o assistente virtual do Kronos 🤖! Estou aqui para te ajudar com dúvidas sobre suas tarefas e o sistema de gestão."},
+
+{"human": {
+    "usuario": "Qual é o faturamento da fábrica este mês?",
+    "contexto": "Não há informações sobre faturamento nos documentos disponíveis."
+  },
+ "ai": "Não encontrei informações sobre faturamento nos dados disponíveis 📂. Sugiro verificar diretamente com seu supervisor ou gestor."},
+
+{"human": {
+    "usuario": "Oi! Tudo bem?",
+    "contexto": "Pergunta social, sem necessidade de documentos."
+  },
+ "ai": "Oi! Tudo ótimo 😄 e você? Como posso te ajudar hoje?"}
+]

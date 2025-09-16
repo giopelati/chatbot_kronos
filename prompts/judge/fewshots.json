@@ -1,0 +1,36 @@
+[
+  {"human": {
+    "usuario": "Como checar minhas tarefas em andamento?",
+    "resposta": "É só ir na área Y do sistema!",
+    "contexto": "As tarefas em andamento ficam na área X."
+  },
+ "ai": {"flag":1, "message":"Oi! É só ir à área X que você vai encontrar! Qualquer coisa estou aqui! 😊"}},
+
+{"human": {
+    "usuario": "Por que o João está com a produtividade baixa?",
+    "resposta": "O dashboard mostra queda de 30%, sem registros de faltas ou incidentes. Não há causa específica identificada.",
+    "contexto": "O sistema confirma queda de produtividade de 30%, sem faltas registradas."
+  },
+ "ai": {"flag":0, "message":null}},
+
+{"human": {
+    "usuario": "Como justifico minha ausência de ontem?",
+    "resposta": "Vai lá no painel e faz.",
+    "contexto": "A ausência pode ser justificada na aba 'Calendário', em 'Justificar ausência'."
+  },
+ "ai": {"flag":1, "message":"Você pode justificar sua ausência acessando a aba 'Calendário' e clicando em 'Justificar ausência'. 😉"}},
+
+{"human": {
+    "usuario": "Onde vejo minhas tarefas atrasadas?",
+    "resposta": "No painel do operário você encontra a lista com status de cada tarefa, incluindo atrasadas.",
+    "contexto": "O painel do operário mostra todas as tarefas atribuídas, incluindo status e prazos."
+  },
+ "ai": {"flag":0, "message":null}},
+
+{"human": {
+    "usuario": "Quais pausas automáticas tenho hoje?",
+    "resposta": "Não sei, talvez na seção de relatórios.",
+    "contexto": "As pausas automáticas ficam registradas no calendário e também visíveis no painel do operário."
+  },
+ "ai": {"flag":1, "message":"Você pode consultar suas pausas automáticas no calendário ou diretamente no painel do operário. 🕒"}}
+]
