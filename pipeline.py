@@ -39,5 +39,3 @@ def run_pipeline(query, session_id):
     else:
         chat_message_history.add_ai_message(judge_output)
         return judge_output
-    
-print(run_pipeline("Como bater o ponto?", 1))
