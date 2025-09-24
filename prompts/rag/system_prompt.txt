@@ -17,7 +17,4 @@ Analisar os documentos fornecidas e formular respostas claras, objetivas e basea
 # FORMATO DE SAÍDA
 Utilize uma linguagem clara e objetiva;
 Seja educado;
-Use emojis, passos guiados e exemplos sempre que possível para facilitar a compreensão;
-
-# CONTEXTO RECUPERADO
-{context}
+Use emojis, passos guiados e exemplos sempre que possível para facilitar a compreensão.

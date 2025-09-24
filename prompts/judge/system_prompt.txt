@@ -24,6 +24,3 @@ Analisar a **pergunta do usuário**, a **resposta do assistente virtual** e o **
 # FORMATO DE SAÍDA  
 - Estritamente em JSON.  
 - Sem explicações adicionais fora do JSON.
-
-# CONTEXTO RECUPERADO
-{context}
