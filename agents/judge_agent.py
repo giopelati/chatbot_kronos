@@ -63,8 +63,6 @@ def run_judge_agent(query, rag_output, context, session_id):
 
         output: JudgeOutput = pipeline.invoke({"query": query, "rag_output": rag_output, "context": context, "memory": memory.messages})
 
-        print("Judge:", output)
-
         if output.flag == 0:
             return True, None
         else:

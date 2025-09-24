@@ -50,7 +50,7 @@ fewshots = FewShotChatMessagePromptTemplate(
 guardrail_prompt = ChatPromptTemplate.from_messages([
     system_prompt,
     fewshots,
-    MessagesPlaceholder("memory"),   # opcional: histórico/memória
+    MessagesPlaceholder("memory"),
     ("human", "{query}"),
 ])
 
@@ -62,8 +62,6 @@ def run_guardrail_agent(query, session_id):
         memory = get_memory(session_id)
 
         output: GuardrailOutput = pipeline.invoke({"query": query, "memory": memory.messages})
-
-        print('Guardrail:', output)
 
         if output.flag == 0:
             return True, None
