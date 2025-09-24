@@ -1,6 +1,6 @@
 import http.client
 import json
-import time
+from time import sleep
 import urllib.parse
 
 # Configurações da API
@@ -11,53 +11,59 @@ headers = {
     "Content-Type": "application/json"
 }
 
-# Lê as perguntas de um arquivo JSON
-with open('tests/questions.json', 'r', encoding='utf-8') as file:
-    questions = json.load(file)
+test_types = ('default', 'exception', 'hallucination', 'memory')
 
-answers = []
+for test_type in test_types:
 
-# Conecta com o servidor
-conn = http.client.HTTPConnection(url, port)
+    # Lê as perguntas de um arquivo JSON
+    with open(f'tests/questions/{test_type}_questions.json', 'r', encoding='utf-8') as file:
+        questions = json.load(file)
 
-for item in questions:
-    # Monta a query string com os parâmetros
-    params = urllib.parse.urlencode({
-        "query": item["message"],
-        "session_id": str(item["session_id"])
-    })
-    
-    # URL final com query string
-    url_final = f"{endpoint}?{params}"
-    print(url_final)
-    
-    # Fazendo tentativas de requisição, caso o status não seja 200
-    for i in range(20):
-        conn.request("GET", url_final, headers=headers)
-        response = conn.getresponse()
+    answers = []
 
-        if response.status == 200:
-            break
-        time.sleep(1)
-    
-    # Lê a resposta
-    response_body = response.read().decode("utf-8")
-    try:
-        reply_message = json.loads(response_body).get("resposta", "Erro na resposta")
-    except json.JSONDecodeError:
-        reply_message = "Erro ao decodificar JSON"
-    
-    answers.append({
-        "session_id": item["session_id"],
-        "pergunta": item["message"],
-        "resposta": reply_message
-    })
+    # Conecta com o servidor
+    conn = http.client.HTTPConnection(url, port)
 
-# Fecha a conexão
-conn.close()
+    for item in questions:
+        # Monta a query string com os parâmetros
+        params = urllib.parse.urlencode({
+            "query": item["message"],
+            "session_id": str(item["session_id"])
+        })
+        
+        # URL final com query string
+        url_final = f"{endpoint}?{params}"
+        print(url_final)
+        
+        # Fazendo tentativas de requisição, caso o status não seja 200
+        for i in range(20):
+            conn.request("GET", url_final, headers=headers)
+            response = conn.getresponse()
 
-# Grava as respostas no arquivo
-with open("tests/answers.json", "w", encoding="utf-8") as f:
-    json.dump(answers, f, indent=2, ensure_ascii=False)
+            if response.status == 200:
+                break
+            sleep(60)
+        
+        # Lê a resposta
+        response_body = response.read().decode("utf-8")
+        try:
+            reply_message = json.loads(response_body).get("resposta", "Erro na resposta")
+        except json.JSONDecodeError:
+            reply_message = "Erro ao decodificar JSON"
+        
+        answers.append({
+            "session_id": item["session_id"],
+            "pergunta": item["message"],
+            "resposta": reply_message
+        })
 
-print("Todas as perguntas foram enviadas e respostas salvas em 'answers.json'.")
+    # Fecha a conexão
+    conn.close()
+
+    # Grava as respostas no arquivo
+    with open(f"tests/answers/{test_type}_answers.json", "w", encoding="utf-8") as f:
+        json.dump(answers, f, indent=2, ensure_ascii=False)
+
+    print(f"Todas as perguntas foram enviadas e respostas salvas em '{test_type}_answers.json'.")
+
+    sleep(30)

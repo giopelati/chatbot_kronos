@@ -1,0 +1,12 @@
+[ 
+  {"session_id":100, "message":"Oie! Como funciona a redistribuição de tarefas?"}, 
+  {"session_id":101, "message":"Posso desatribuir uma tarefa?"}, 
+  {"session_id":102, "message":"O que é o Kronos?"}, 
+  {"session_id":103, "message":"Onde reportar uma tarefa?"}, 
+  {"session_id":104, "message":"Posso justificar ausência?"}, 
+  {"session_id":105, "message":"Como funciona a análise GUT?"}, 
+  {"session_id":106, "message":"Qual é o objetivo do sistema?"}, 
+  {"session_id":107, "message":"Onde que eu vejo minhas tarefas?"}, 
+  {"session_id":108, "message":"Onde eu vejo a descrição das tarefas?"}, 
+  {"session_id":109, "message":"Como faço para colocar um arquivo para justificar minha ausência?"} 
+]
